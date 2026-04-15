@@ -95,6 +95,6 @@ Sample size:  n = ((z_α/2 + z_β) / h)²
 ## Contact
 
 **Rahul Reddy Puchakayala**
-- LinkedIn: [linkedin.com/in/YOUR-LINKEDIN](https://www.linkedin.com/in/rahulreddypuchakayala/)
+- LinkedIn: [linkedin.com/in/rahulreddypuchakayala/](https://www.linkedin.com/in/rahulreddypuchakayala/)
 - Email: rahulreddypuch@gmail.com
-- Portfolio: [YOUR-USERNAME.github.io/rahul-ai-portfolio](https://rahulreddyutd.github.io/capitalone-pm-portfolio/)
+- Portfolio: [rahulreddyutd.github.io/capitalone-pm-portfolio/](https://rahulreddyutd.github.io/capitalone-pm-portfolio/)
