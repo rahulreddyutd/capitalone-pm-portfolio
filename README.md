@@ -1,9 +1,8 @@
 # AI & Data Product Portfolio
 ### Rahul Reddy Puchakayala
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-3fb950?style=flat-square&logo=github)](https://YOUR-USERNAME.github.io/rahul-ai-portfolio/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-3fb950?style=flat-square&logo=github)]((https://rahulreddyutd.github.io/capitalone-pm-portfolio/))
 [![Claude API](https://img.shields.io/badge/Powered%20By-Claude%20API-orange?style=flat-square)](https://anthropic.com)
-[![No Build Required](https://img.shields.io/badge/Build-None%20Required-blue?style=flat-square)](./index.html)
 
 > Three end-to-end AI & data systems built for the Capital One MarTech role. Every algorithm runs live in the browser — K-Means++ clustering, cosine similarity NBA recommendations, Bayesian A/B testing, ETL pipelines, and real-time Z-test statistics. Powered by the Claude API for live AI analysis.
 
@@ -11,9 +10,7 @@
 
 ## 🔗 Live Demo
 
-**[→ Open Portfolio](https://YOUR-USERNAME.github.io/rahul-ai-portfolio/)**
-
-No installation. No server. Open in any browser and every button works immediately.
+**[→ Open Portfolio](https://rahulreddyutd.github.io/capitalone-pm-portfolio/)**
 
 ---
 
@@ -29,7 +26,7 @@ No installation. No server. Open in any browser and every button works immediate
 
 ## Project 1 — AI Personalization Engine
 
-Paste your own customer CSV data (spend, frequency, recency, digital score, savings affinity) and the engine:
+Paste customer CSV data (spend, frequency, recency, digital score, savings affinity) and the engine:
 
 1. **Clusters** customers using real K-Means++ — centroids seeded via weighted probability distribution, not random
 2. **Calls Claude API** to profile each segment with behavioral reasoning based on the actual computed centroids
@@ -43,8 +40,6 @@ Cosine similarity: cos(A,B) = (A·B) / (‖A‖ · ‖B‖)
 Z-test:            z = |p_A - p_B| / SE_pooled,   p = 2·(1 - Φ(z))
 Beta posterior:    Beta(α = conversions+1, β = non-conversions+1)
 ```
-
-**Resume bullet:** Built an AI-driven personalization engine that recommends next-best customer messages using behavioral segmentation and embedding-based similarity search, improving simulated click-through rate by 18% through an A/B testing framework.
 
 ---
 
@@ -65,8 +60,6 @@ Churn risk = clamp(1 - (LTV/1500)·noise, 0.02, 0.98)
 Pearson r(X,Y) = Σ((xi-x̄)(yi-ȳ)) / (σX · σY · n)
 ```
 
-**Resume bullet:** Designed a Customer 360 marketing analytics platform integrating multi-source behavioral data into a unified schema, enabling segmentation-based targeting and improving campaign decision speed by 30%.
-
 ---
 
 ## Project 3 — Experimentation Platform
@@ -85,9 +78,6 @@ Cohen's h:    h = |2·arcsin(√p1) - 2·arcsin(√p2)|
 Sample size:  n = ((z_α/2 + z_β) / h)²
               z_α/2 = 1.96 (α=0.05),  z_β = 0.842 (80% power)
 ```
-
-**Resume bullet:** Built a product experimentation platform enabling A/B testing across messaging and landing page variants, defining KPIs (CTR, conversion rate) and enabling data-driven product decisions.
-
 ---
 
 ## Tech Stack
@@ -102,52 +92,12 @@ Sample size:  n = ((z_α/2 + z_β) / h)²
 | ETL | Multi-source merge, probabilistic identity resolution |
 | Deployment | Single HTML file — GitHub Pages, no build step |
 
----
-
-## How to Run Locally
-
-```bash
-git clone https://github.com/YOUR-USERNAME/rahul-ai-portfolio.git
-cd rahul-ai-portfolio
-open index.html    # macOS
-# or just double-click index.html on Windows/Linux
-```
-
-No `npm install`. No `.env` file. No server. The Claude API calls are handled through the Claude.ai artifact environment.
-
----
-
-## Deploy to GitHub Pages
-
-```bash
-# 1. Push to GitHub
-git init
-git add .
-git commit -m "initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/rahul-ai-portfolio.git
-git push -u origin main
-
-# 2. Enable Pages
-# GitHub repo → Settings → Pages → Source: main branch, / (root) → Save
-# Your live URL: https://YOUR-USERNAME.github.io/rahul-ai-portfolio/
-```
-
----
-
-## Why This Approach
-
-Most portfolios show screenshots. Dashboards with hardcoded numbers. Charts that look real but aren't connected to anything.
-
-Every number in this portfolio was computed by a real algorithm milliseconds before you saw it. The K-Means code is ~35 lines of vanilla JS — open DevTools and inspect it. The Z-test is a direct translation of the formula. The Claude API calls send the actual computed outputs — real centroids, real p-values, real LTV distributions — and get back real reasoning, not templated text.
-
-The production version of each system would use a feature store instead of procedural generation, Fellegi-Sunter for identity resolution instead of a probability slider, and mSPRT for sequential testing instead of a fixed-horizon Z-test. Those are implementation choices, not knowledge gaps — and the current implementation demonstrates the underlying math clearly enough that the tradeoffs are obvious.
 
 ---
 
 ## Contact
 
 **Rahul Reddy Puchakayala**
-- LinkedIn: [linkedin.com/in/YOUR-LINKEDIN](https://linkedin.com/in/YOUR-LINKEDIN)
-- Email: your.email@example.com
-- Portfolio: [YOUR-USERNAME.github.io/rahul-ai-portfolio](https://YOUR-USERNAME.github.io/rahul-ai-portfolio/)
+- LinkedIn: [linkedin.com/in/YOUR-LINKEDIN](https://www.linkedin.com/in/rahulreddypuchakayala/)
+- Email: rahulreddypuch@gmail.com
+- Portfolio: [YOUR-USERNAME.github.io/rahul-ai-portfolio](https://rahulreddyutd.github.io/capitalone-pm-portfolio/)
