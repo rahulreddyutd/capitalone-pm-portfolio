@@ -1,7 +1,7 @@
 # AI & Data Product Portfolio
 ### Rahul Reddy Puchakayala
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-3fb950?style=flat-square&logo=github)]((https://rahulreddyutd.github.io/capitalone-pm-portfolio/))
+[![Live Demo](https://rahulreddyutd.github.io/capitalone-pm-portfolio/)
 [![Claude API](https://img.shields.io/badge/Powered%20By-Claude%20API-orange?style=flat-square)](https://anthropic.com)
 
 > Three end-to-end AI & data systems built for the Capital One MarTech role. Every algorithm runs live in the browser — K-Means++ clustering, cosine similarity NBA recommendations, Bayesian A/B testing, ETL pipelines, and real-time Z-test statistics. Powered by the Claude API for live AI analysis.
