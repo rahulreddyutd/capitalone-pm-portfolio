@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rahul Reddy Puchakayala — AI Data Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #05080f; --s1: #0d1117; --s2: #161b22; --b1: #21262d; --b2: #30363d;
+  --tx: #e6edf3; --mu: #7d8590;
+  --gr: #3fb950; --gd: rgba(63,185,80,0.12);
+  --bl: #58a6ff; --bd: rgba(88,166,255,0.12);
+  --or: #e3a838; --od: rgba(227,168,56,0.12);
+  --re: #f85149; --rd: rgba(248,81,73,0.12);
+  --pu: #bc8cff; --pd: rgba(188,140,255,0.12);
+  --mo: 'IBM Plex Mono', monospace;
+  --sa: 'DM Sans', sans-serif;
+  --di: 'Bebas Neue', cursive;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--tx); font-family: var(--sa); font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 52px; background: rgba(5,8,15,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--b1); display: flex; align-items: center; padding: 0 2rem; gap: 0; }
+.nb { font-family: var(--di); font-size: 1.4rem; color: var(--gr); letter-spacing: 0.04em; margin-right: 2rem; }
+.nl { display: flex; list-style: none; flex: 1; }
+.nl a { display: flex; align-items: center; height: 52px; padding: 0 1rem; font-family: var(--mo); font-size: 0.65rem; color: var(--mu); text-decoration: none; letter-spacing: 0.05em; border-bottom: 2px solid transparent; transition: all 0.15s; }
+.nl a:hover, .nl a.on { color: var(--tx); border-bottom-color: var(--gr); }
+.nbadge { margin-left: auto; font-family: var(--mo); font-size: 0.6rem; color: var(--gr); border: 1px solid var(--gr); padding: 0.15rem 0.55rem; border-radius: 3px; background: var(--gd); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 3rem; position: relative; overflow: hidden; }
+#hc { position: absolute; inset: 0; opacity: 0.15; pointer-events: none; }
+.ht { font-family: var(--mo); font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gr); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.ht::before { content: ''; width: 20px; height: 1px; background: var(--gr); }
+.hh1 { font-family: var(--di); font-size: clamp(3.5rem, 8.5vw, 7.5rem); line-height: 0.93; color: var(--tx); margin-bottom: 1.5rem; }
+.hh1 em { color: var(--gr); font-style: normal; }
+.hsub { font-size: 0.9rem; color: var(--mu); max-width: 540px; line-height: 1.75; margin-bottom: 2rem; }
+.hpills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem; }
+.pill { font-family: var(--mo); font-size: 0.58rem; padding: 0.2rem 0.55rem; border: 1px solid var(--b2); color: var(--mu); border-radius: 3px; letter-spacing: 0.06em; }
+.pill.hi { border-color: var(--gr); color: var(--gr); background: var(--gd); }
+.hbtns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.5rem 1.2rem; border-radius: 4px; font-family: var(--mo); font-size: 0.68rem; letter-spacing: 0.05em; cursor: pointer; border: none; text-decoration: none; transition: all 0.15s; white-space: nowrap; }
+.btn-g { background: var(--gr); color: #000; font-weight: 600; }
+.btn-g:hover { background: #4ec862; transform: translateY(-1px); }
+.btn-g:disabled { background: var(--mu); color: var(--bg); cursor: not-allowed; transform: none; }
+.btn-o { background: transparent; color: var(--tx); border: 1px solid var(--b2); }
+.btn-o:hover { border-color: var(--gr); color: var(--gr); }
+.btn-sm { padding: 0.18rem 0.5rem; font-size: 0.58rem; }
+
+/* SECTION */
+.sec { border-top: 1px solid var(--b1); padding: 4rem 3rem; }
+.se { font-family: var(--mo); font-size: 0.58rem; letter-spacing: 0.22em; color: var(--gr); text-transform: uppercase; margin-bottom: 0.4rem; }
+.st { font-family: var(--di); font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 0.93; color: var(--tx); margin-bottom: 0.5rem; }
+.st em { color: var(--gr); font-style: normal; }
+.sd { color: var(--mu); font-size: 0.85rem; max-width: 640px; line-height: 1.75; margin-bottom: 2rem; }
+
+/* PANEL */
+.pn { background: var(--s1); border: 1px solid var(--b1); border-radius: 6px; overflow: hidden; margin-bottom: 1rem; }
+.pnh { background: var(--s2); border-bottom: 1px solid var(--b1); padding: 0.5rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.pnt { font-family: var(--mo); font-size: 0.6rem; color: var(--mu); letter-spacing: 0.1em; text-transform: uppercase; }
+.pnb { padding: 1.2rem; }
+.pns { display: flex; align-items: center; gap: 0.35rem; font-family: var(--mo); font-size: 0.58rem; color: var(--mu); }
+.dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.dot-idle { background: var(--mu); }
+.dot-run { background: var(--or); animation: blink 0.7s infinite; }
+.dot-ok { background: var(--gr); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* GRID */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+
+/* CONTROLS */
+.ctrl { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; flex-wrap: wrap; }
+.clb { font-family: var(--mo); font-size: 0.6rem; color: var(--mu); min-width: 150px; letter-spacing: 0.04em; }
+input[type=range] { -webkit-appearance: none; height: 3px; background: var(--b2); border-radius: 2px; outline: none; flex: 1; min-width: 80px; cursor: pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--gr); cursor: pointer; }
+.cv { font-family: var(--mo); font-size: 0.68rem; color: var(--gr); min-width: 50px; text-align: right; }
+select { background: var(--s2); border: 1px solid var(--b2); color: var(--tx); font-family: var(--mo); font-size: 0.65rem; padding: 0.25rem 0.5rem; border-radius: 3px; outline: none; cursor: pointer; }
+select:focus { border-color: var(--gr); }
+textarea { background: var(--s2); border: 1px solid var(--b2); color: var(--tx); font-family: var(--mo); font-size: 0.68rem; padding: 0.6rem 0.8rem; border-radius: 4px; outline: none; resize: vertical; width: 100%; line-height: 1.6; }
+textarea:focus { border-color: var(--gr); }
+
+/* DATA TABLE */
+.dt { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
+.dt th { font-family: var(--mo); font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); padding: 0.4rem 0.65rem; border-bottom: 1px solid var(--b1); text-align: left; white-space: nowrap; }
+.dt td { padding: 0.4rem 0.65rem; border-bottom: 1px solid var(--b1); vertical-align: middle; }
+.dt tr:last-child td { border-bottom: none; }
+.dt tr:hover td { background: rgba(255,255,255,0.018); }
+.cg { color: var(--gr); } .cb { color: var(--bl); } .co { color: var(--or); } .cr { color: var(--re); } .cm { color: var(--mu); } .cp { color: var(--pu); }
+
+/* BADGE */
+.bx { display: inline-flex; align-items: center; padding: 0.08rem 0.4rem; border-radius: 3px; font-family: var(--mo); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.04em; }
+.bg { background: var(--gd); color: var(--gr); border: 1px solid rgba(63,185,80,0.3); }
+.bb { background: var(--bd); color: var(--bl); border: 1px solid rgba(88,166,255,0.3); }
+.bo { background: var(--od); color: var(--or); border: 1px solid rgba(227,168,56,0.3); }
+.br { background: var(--rd); color: var(--re); border: 1px solid rgba(248,81,73,0.3); }
+
+/* PROGRESS */
+.pg { margin-bottom: 0.55rem; }
+.pgh { display: flex; justify-content: space-between; margin-bottom: 0.18rem; }
+.pgn { font-family: var(--mo); font-size: 0.62rem; color: var(--tx); }
+.pgv { font-family: var(--mo); font-size: 0.62rem; color: var(--gr); }
+.pgt { height: 4px; background: var(--b2); border-radius: 2px; overflow: hidden; }
+.pgf { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+.pgf.g { background: var(--gr); } .pgf.b { background: var(--bl); }
+.pgf.o { background: var(--or); } .pgf.r { background: var(--re); } .pgf.p { background: var(--pu); }
+
+/* RESULT BOX */
+.rb { background: var(--gd); border: 1px solid rgba(63,185,80,0.3); border-radius: 6px; padding: 1rem; margin-top: 0.75rem; }
+.rbt { font-family: var(--mo); font-size: 0.58rem; letter-spacing: 0.16em; color: var(--gr); text-transform: uppercase; margin-bottom: 0.6rem; }
+.rr { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 0.22rem 0; border-bottom: 1px solid rgba(63,185,80,0.1); }
+.rr:last-child { border-bottom: none; }
+.rk { font-family: var(--mo); font-size: 0.63rem; color: var(--mu); flex-shrink: 0; }
+.rv { font-family: var(--mo); font-size: 0.65rem; color: var(--gr); text-align: right; }
+
+/* LOG */
+.lb { background: #000; border: 1px solid var(--b1); border-radius: 4px; padding: 0.65rem 0.8rem; font-family: var(--mo); font-size: 0.62rem; height: 180px; overflow-y: auto; line-height: 1.5; }
+.ll { display: flex; gap: 0.55rem; margin-bottom: 0.08rem; }
+.lt { color: var(--mu); white-space: nowrap; flex-shrink: 0; }
+.lm { color: var(--gr); } .lm.i { color: var(--bl); } .lm.w { color: var(--or); } .lm.e { color: var(--re); }
+
+/* AI RESPONSE */
+.ai-box { background: var(--s2); border: 1px solid var(--b2); border-radius: 6px; padding: 1rem 1.1rem; font-size: 0.82rem; line-height: 1.75; color: var(--tx); white-space: pre-wrap; word-break: break-word; }
+.ai-box strong { color: var(--gr); font-weight: 600; }
+.ai-typing { display: inline-block; width: 8px; height: 14px; background: var(--gr); border-radius: 1px; animation: blink 0.7s infinite; vertical-align: middle; margin-left: 2px; }
+
+/* METRIC CARD */
+.mc { background: var(--s1); border: 1px solid var(--b1); border-radius: 6px; padding: 0.85rem; }
+.mv { font-family: var(--di); font-size: 2rem; line-height: 1; }
+.mv.g { color: var(--gr); } .mv.b { color: var(--bl); } .mv.o { color: var(--or); }
+.ml { font-family: var(--mo); font-size: 0.56rem; color: var(--mu); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+
+/* AB BOXES */
+.ab2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.75rem; }
+.ab { border: 1px solid var(--b1); border-radius: 6px; padding: 0.9rem; background: var(--s1); }
+.ab.win { border-color: var(--gr); }
+.abl { font-family: var(--mo); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--mu); text-transform: uppercase; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem; }
+.abs { font-family: var(--di); font-size: 2.2rem; line-height: 1; margin-bottom: 0.1rem; }
+.abu { font-family: var(--mo); font-size: 0.56rem; color: var(--mu); }
+
+/* TABS */
+.tabs { display: flex; border-bottom: 1px solid var(--b1); margin-bottom: 1.25rem; }
+.tab { padding: 0.5rem 1.1rem; font-family: var(--mo); font-size: 0.65rem; letter-spacing: 0.05em; color: var(--mu); cursor: pointer; border-bottom: 2px solid transparent; background: none; border-top: none; border-left: none; border-right: none; transition: all 0.15s; }
+.tab.on { color: var(--gr); border-bottom-color: var(--gr); }
+.tp { display: none; } .tp.on { display: block; }
+
+/* SCROLLABLE */
+.scroll-x { overflow-x: auto; }
+.scroll-table { overflow-x: auto; max-height: 300px; overflow-y: auto; }
+.sticky-head { position: sticky; top: 0; background: var(--s2); z-index: 1; }
+
+.mt { margin-top: 0.75rem; } .mt2 { margin-top: 1.25rem; } .mb { margin-bottom: 0.75rem; } .mb2 { margin-bottom: 1.25rem; }
+.flex { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.cw { position: relative; width: 100%; padding: 0.4rem; }
+canvas.ch { max-height: 240px; } canvas.cht { max-height: 300px; }
+
+footer { border-top: 1px solid var(--b1); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.fn { font-family: var(--di); font-size: 1.2rem; color: var(--mu); }
+.fm { font-family: var(--mo); font-size: 0.58rem; color: var(--mu); text-align: right; }
+
+@media(max-width:768px) {
+  nav { padding: 0 1rem; } .nl a { padding: 0 0.5rem; font-size: 0.58rem; }
+  .hero, .sec { padding: 4rem 1.25rem 2rem; }
+  .g2, .g3, .g4, .ab2 { grid-template-columns: 1fr; }
+  footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; } .fm { text-align: center; }
+}
+
+/* Spinner */
+.spin { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--b2); border-top-color: var(--gr); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nb">RRP</span>
+  <ul class="nl">
+    <li><a href="javascript:void(0)" onclick="scrollToSection('p1')">01 · Personalization Engine</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('p2')">02 · Customer 360</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('p3')">03 · Experimentation</a></li>
+  </ul>
+  <div class="nbadge">⚡ CLAUDE API POWERED</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hc"></canvas>
+  <p class="ht">Rahul Reddy Puchakayala · AI & Data Product Portfolio</p>
+  <h1 class="hh1">Real AI.<br><em>Real Intelligence.</em><br>Real Results.</h1>
+  <p class="hsub">Three end-to-end AI & data systems powered by the Claude API. Every analysis, every segment profile, every experiment report is generated by a live LLM call — not hardcoded text. Paste your own customer data and watch real intelligence run on it.</p>
+  <div class="hpills">
+    <span class="pill hi">● Claude API Live</span>
+    <span class="pill">K-Means Clustering</span>
+    <span class="pill">AI Segment Profiling</span>
+    <span class="pill">NBA Recommendations</span>
+    <span class="pill">Bayesian A/B Testing</span>
+    <span class="pill">ETL + Identity Resolution</span>
+    <span class="pill">AI Insight Reports</span>
+  </div>
+  <div class="hbtns">
+    <button class="btn btn-g" onclick="scrollToSection('p1')">▶ Run Project 1</button>
+    <button class="btn btn-o" onclick="scrollToSection('p2')">▶ Run Project 2</button>
+    <button class="btn btn-o" onclick="scrollToSection('p3')">▶ Run Project 3</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PROJECT 1 — AI PERSONALIZATION ENGINE
+══════════════════════════════ -->
+<section class="sec" id="p1">
+  <div class="se">Project 01 · MarTech · AI/ML</div>
+  <h2 class="st">AI Personalization <em>Engine</em></h2>
+  <p class="sd">Real K-Means++ clustering on customer behavioral data you control. Then Claude AI profiles each segment, reasons over a customer's vector, and writes a personalized next-best-action recommendation with real justification — live LLM call every time.</p>
+
+  <!-- STEP 1: CLUSTERING -->
+  <div class="pn">
+    <div class="pnh">
+      <span class="pnt">STEP 1 — K-Means++ Clustering on Real Customer Data</span>
+      <span class="pns"><span class="dot dot-idle" id="s1dot"></span><span id="s1stat">Ready</span></span>
+    </div>
+    <div class="pnb">
+      <div class="g2">
+        <div>
+          <p style="font-family:var(--mo);font-size:0.65rem;color:var(--mu);margin-bottom:0.7rem;line-height:1.6">Paste CSV rows (or use sample data). Format: <span class="cg">name, spend, frequency, recency_days, digital_score, savings_score</span></p>
+          <textarea id="csvInput" rows="8" placeholder="name,spend,freq,recency,digital,savings
+Alice Chen,1850,22,4,0.91,0.38
+Marcus Webb,95,3,52,0.28,0.82
+Sofia Grant,2400,28,6,0.94,0.51
+Jordan Lee,185,5,38,0.44,0.76
+Priya Sharma,3100,31,2,0.97,0.62
+Tyler Ross,55,2,71,0.18,0.94
+Maya Patel,1420,18,9,0.85,0.41
+Devon Kirk,320,7,27,0.52,0.69
+Kenji Ito,2850,25,3,0.96,0.55
+Zara Osei,110,4,48,0.31,0.88
+Lucas Fe,890,12,15,0.73,0.47
+Nadia Ko,2100,23,5,0.92,0.44
+Ethan Mo,440,8,22,0.58,0.71
+Amara Di,1680,20,7,0.88,0.39
+Ryan Xu,3400,35,1,0.98,0.58
+Elena Kv,140,3,61,0.22,0.91
+James Ok,760,11,18,0.69,0.53
+Lina Mu,2650,27,4,0.95,0.49
+Carlos Re,210,5,44,0.36,0.84
+Fatima Al,1950,21,6,0.90,0.42"></textarea>
+          <div class="ctrl mt">
+            <span class="clb">K Segments</span>
+            <input type="range" id="p1k" min="2" max="5" value="3" oninput="document.getElementById('p1kv').textContent=this.value">
+            <span class="cv" id="p1kv">3</span>
+          </div>
+          <div class="flex mt">
+            <button id="p1RunBtn" class="btn btn-g" onclick="runP1()">▶ Cluster + AI Profile Segments</button>
+            <button class="btn btn-o" onclick="resetP1()">↺ Reset</button>
+          </div>
+        </div>
+        <div>
+          <div class="cw"><canvas id="p1scatter" class="cht"></canvas></div>
+        </div>
+      </div>
+      <div id="p1log" class="lb mt"></div>
+    </div>
+  </div>
+
+  <!-- CLUSTER RESULTS -->
+  <div class="pn" id="p1clusterResults" style="display:none">
+    <div class="pnh">
+      <span class="pnt">CLUSTER RESULTS + AI SEGMENT PROFILES (Claude-Generated)</span>
+      <span class="pns"><span class="dot dot-ok"></span><span class="cg">AI Analysis Complete</span></span>
+    </div>
+    <div class="pnb">
+      <div class="scroll-x mb2">
+        <table class="dt" id="p1ctable">
+          <thead><tr><th>Segment</th><th>Members</th><th>Avg Spend</th><th>Avg Freq</th><th>Avg Recency</th><th>Digital</th><th>Savings</th></tr></thead>
+          <tbody id="p1ctbody"></tbody>
+        </table>
+      </div>
+      <div id="p1aiprofiles"></div>
+    </div>
+  </div>
+
+  <!-- STEP 2: NBA -->
+  <div class="pn">
+    <div class="pnh">
+      <span class="pnt">STEP 2 — AI Next-Best-Action Recommender (Live Claude Reasoning)</span>
+      <span class="pns"><span class="dot dot-idle" id="s2dot"></span><span id="s2stat">Run clustering first</span></span>
+    </div>
+    <div class="pnb">
+      <p style="font-family:var(--mo);font-size:0.65rem;color:var(--mu);margin-bottom:0.75rem">Select a customer. Claude sees their real feature vector, their segment profile, and all available message templates — then writes a live personalized recommendation with justification.</p>
+      <div class="ctrl">
+        <span class="clb">Select Customer</span>
+        <select id="p1csel" onchange="runNBA()" style="flex:1;max-width:300px"><option value="">— run clustering first —</option></select>
+      </div>
+      <div id="p1nba" style="display:none">
+        <div class="g2 mt">
+          <div>
+            <div style="font-family:var(--mo);font-size:0.58rem;color:var(--mu);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem">Customer Feature Profile</div>
+            <div id="p1cfeats"></div>
+            <div id="p1cosine" class="mt"></div>
+          </div>
+          <div>
+            <div style="font-family:var(--mo);font-size:0.58rem;color:var(--mu);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem">Claude AI Recommendation</div>
+            <div id="p1nbarec" class="ai-box" style="min-height:120px">Select a customer to generate a live recommendation...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: A/B -->
+  <div class="pn">
+    <div class="pnh">
+      <span class="pnt">STEP 3 — A/B Test with Bayesian Analysis + AI Interpretation</span>
+    </div>
+    <div class="pnb">
+      <div class="g2">
+        <div>
+          <div class="ctrl"><span class="clb">Control CTR (%)</span><input type="range" id="abA" min="1" max="15" value="4" step="0.5" oninput="document.getElementById('abAv').textContent=this.value+'%';calcAB()"><span class="cv" id="abAv">4%</span></div>
+          <div class="ctrl"><span class="clb">Treatment CTR (%)</span><input type="range" id="abB" min="1" max="20" value="4.9" step="0.1" oninput="document.getElementById('abBv').textContent=parseFloat(this.value).toFixed(1)+'%';calcAB()"><span class="cv" id="abBv">4.9%</span></div>
+          <div class="ctrl"><span class="clb">Sample Size (each)</span><input type="range" id="abN" min="200" max="5000" value="1500" step="100" oninput="document.getElementById('abNv').textContent=parseInt(this.value).toLocaleString();calcAB()"><span class="cv" id="abNv">1,500</span></div>
+          <div id="abstats" class="mt" style="background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:0.85rem"></div>
+          <button class="btn btn-g mt" onclick="runABInterpret()" id="abAIbtn">🤖 Ask Claude to Interpret Results</button>
+        </div>
+        <div>
+          <div class="ab2">
+            <div class="ab" id="abAbox"><div class="abl">Control (A)</div><div class="abs cm" id="abAval">—</div><div class="abu">Click-Through Rate</div><div class="mt" id="abAsub"></div></div>
+            <div class="ab" id="abBbox"><div class="abl">Treatment (B) <span id="abwinner"></span></div><div class="abs cg" id="abBval">—</div><div class="abu">Click-Through Rate</div><div class="mt" id="abBsub"></div></div>
+          </div>
+          <div class="cw"><canvas id="abchart" class="ch"></canvas></div>
+        </div>
+      </div>
+      <div id="abaibox" style="display:none" class="mt">
+        <div style="font-family:var(--mo);font-size:0.58rem;letter-spacing:0.16em;color:var(--gr);text-transform:uppercase;margin-bottom:0.5rem">Claude AI Interpretation</div>
+        <div id="abaicontent" class="ai-box"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PROJECT 2 — CUSTOMER 360
+══════════════════════════════ -->
+<section class="sec" id="p2">
+  <div class="se">Project 02 · Data Platform · Analytics</div>
+  <h2 class="st">Customer 360 <em>Data Platform</em></h2>
+  <p class="sd">A real ETL pipeline that ingests from 4 source systems, resolves identities probabilistically, engineers features, computes Pearson correlations, and then calls Claude to write a live data quality report and targeting strategy — based on the actual computed output.</p>
+
+  <div class="pn">
+    <div class="pnh">
+      <span class="pnt">PIPELINE CONFIGURATION — 4 SOURCE SYSTEMS</span>
+      <span class="pns"><span class="dot dot-idle" id="p2dot"></span><span id="p2stat">Idle</span></span>
+    </div>
+    <div class="pnb">
+      <div class="g4 mb">
+        <div><div style="font-family:var(--mo);font-size:0.58rem;color:var(--gr);margin-bottom:0.35rem">TRANSACTIONS</div><div class="ctrl"><span class="clb" style="min-width:60px">Records</span><input type="range" id="p2t" min="50" max="400" value="200" oninput="document.getElementById('p2tv').textContent=this.value"><span class="cv" id="p2tv">200</span></div></div>
+        <div><div style="font-family:var(--mo);font-size:0.58rem;color:var(--bl);margin-bottom:0.35rem">WEB EVENTS</div><div class="ctrl"><span class="clb" style="min-width:60px">Records</span><input type="range" id="p2w" min="50" max="400" value="180" oninput="document.getElementById('p2wv').textContent=this.value"><span class="cv" id="p2wv">180</span></div></div>
+        <div><div style="font-family:var(--mo);font-size:0.58rem;color:var(--or);margin-bottom:0.35rem">CRM / EMAIL</div><div class="ctrl"><span class="clb" style="min-width:60px">Records</span><input type="range" id="p2c" min="50" max="400" value="160" oninput="document.getElementById('p2cv').textContent=this.value"><span class="cv" id="p2cv">160</span></div></div>
+        <div><div style="font-family:var(--mo);font-size:0.58rem;color:var(--pu);margin-bottom:0.35rem">MOBILE APP</div><div class="ctrl"><span class="clb" style="min-width:60px">Records</span><input type="range" id="p2m" min="50" max="400" value="150" oninput="document.getElementById('p2mv').textContent=this.value"><span class="cv" id="p2mv">150</span></div></div>
+      </div>
+      <div class="ctrl"><span class="clb">Identity Match Rate</span><input type="range" id="p2mr" min="55" max="98" value="87" oninput="document.getElementById('p2mrv').textContent=this.value+'%'"><span class="cv" id="p2mrv">87%</span></div>
+      <div class="flex mt"><button id="p2RunBtn" class="btn btn-g" onclick="runP2()">▶ Run ETL + AI Report</button><button class="btn btn-o" onclick="resetP2()">↺ Reset</button></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="pn">
+      <div class="pnh"><span class="pnt">PIPELINE EXECUTION LOG</span></div>
+      <div style="padding:0"><div class="lb" style="border:none;border-radius:0;height:200px" id="p2log"></div></div>
+    </div>
+    <div class="pn">
+      <div class="pnh"><span class="pnt">DATA QUALITY KPIs</span></div>
+      <div class="pnb" id="p2dq"><div style="font-family:var(--mo);font-size:0.68rem;color:var(--mu);text-align:center;padding:2.5rem 0">Run pipeline to compute</div></div>
+    </div>
+  </div>
+
+  <div class="pn mt">
+    <div class="pnh">
+      <span class="pnt">UNIFIED CUSTOMER PROFILES — LIVE OUTPUT</span>
+      <span id="p2cnt" style="font-family:var(--mo);font-size:0.58rem;color:var(--mu)">0 profiles</span>
+    </div>
+    <div class="scroll-table">
+      <table class="dt">
+        <thead class="sticky-head"><tr><th>ID</th><th>LTV Score</th><th>Spend 90d</th><th>Sessions</th><th>Email Opens</th><th>Mobile</th><th>Churn Risk</th><th>Pref. Channel</th><th>Lifecycle</th><th>Segment</th><th>DQ%</th></tr></thead>
+        <tbody id="p2pbody"><tr><td colspan="11" class="cm" style="text-align:center;padding:2rem">Run pipeline first</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="g2 mt">
+    <div class="pn">
+      <div class="pnh"><span class="pnt">SEGMENT DISTRIBUTION</span></div>
+      <div class="pnb"><div class="cw"><canvas id="p2seg" class="ch"></canvas></div></div>
+    </div>
+    <div class="pn">
+      <div class="pnh"><span class="pnt">FEATURE CORRELATION MATRIX (Pearson r)</span></div>
+      <div class="pnb" id="p2corr"><div style="font-family:var(--mo);font-size:0.68rem;color:var(--mu);text-align:center;padding:3rem 0">Run pipeline to compute</div></div>
+    </div>
+  </div>
+
+  <div class="pn mt" id="p2aiblock" style="display:none">
+    <div class="pnh"><span class="pnt">CLAUDE AI — DATA STRATEGY REPORT</span><span class="pns"><span class="dot dot-ok"></span><span class="cg">Live AI Analysis</span></span></div>
+    <div class="pnb"><div id="p2aicontent" class="ai-box"></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     PROJECT 3 — EXPERIMENTATION PLATFORM
+══════════════════════════════ -->
+<section class="sec" id="p3">
+  <div class="se">Project 03 · Product · Statistics</div>
+  <h2 class="st">Experimentation <em>Platform</em></h2>
+  <p class="sd">Real sample size calculation using Cohen's h formula. Launch experiments, simulate days of traffic with real Z-test statistics, and when significance is reached Claude writes a live insight report — reasoning over the actual numbers, not a template.</p>
+
+  <div class="pn">
+    <div class="pnh"><span class="pnt">EXPERIMENT DESIGNER — Real Sample Size Formula + Claude AI</span></div>
+    <div class="pnb">
+      <div class="g2">
+        <div>
+          <div class="ctrl"><span class="clb">Experiment Type</span><select id="p3type" onchange="calcN()" style="flex:1"><option value="subj">Email Subject Line</option><option value="land">Landing Page CTA</option><option value="algo">Algorithm Swap (NBA)</option><option value="push">Push Notification</option></select></div>
+          <div class="ctrl"><span class="clb">Baseline Rate (%)</span><input type="range" id="p3b" min="1" max="20" value="5" step="0.5" oninput="document.getElementById('p3bv').textContent=this.value+'%';calcN()"><span class="cv" id="p3bv">5%</span></div>
+          <div class="ctrl"><span class="clb">Min Detectable Effect</span><input type="range" id="p3mde" min="3" max="50" value="15" oninput="document.getElementById('p3mdev').textContent=this.value+'%';calcN()"><span class="cv" id="p3mdev">15%</span></div>
+          <div class="ctrl"><span class="clb">Statistical Power</span><input type="range" id="p3pw" min="70" max="99" value="80" oninput="document.getElementById('p3pwv').textContent=this.value+'%';calcN()"><span class="cv" id="p3pwv">80%</span></div>
+          <div class="ctrl"><span class="clb">Significance α</span><select id="p3a" onchange="calcN()" style="flex:1"><option value="0.05">0.05 (95% CI)</option><option value="0.01">0.01 (99% CI)</option><option value="0.10">0.10 (90% CI)</option></select></div>
+          <div class="ctrl"><span class="clb">Daily Traffic</span><input type="range" id="p3tr" min="200" max="10000" value="2000" step="200" oninput="document.getElementById('p3trv').textContent=parseInt(this.value).toLocaleString();calcN()"><span class="cv" id="p3trv">2,000</span></div>
+          <div class="flex mt"><button class="btn btn-g" onclick="launchExp()">▶ Launch Experiment</button></div>
+        </div>
+        <div>
+          <div style="background:var(--s2);border:1px solid var(--b1);border-radius:6px;padding:1rem">
+            <div class="rbt">SAMPLE SIZE CALCULATOR (Cohen's h formula)</div>
+            <div class="rr"><span class="rk">Required per variant</span><span class="rv" id="cn">—</span></div>
+            <div class="rr"><span class="rk">Total sample needed</span><span class="rv" id="ct">—</span></div>
+            <div class="rr"><span class="rk">Estimated runtime</span><span class="rv" id="cd">—</span></div>
+            <div class="rr"><span class="rk">Cohen's h effect size</span><span class="rv" id="ch">—</span></div>
+            <div class="rr"><span class="rk">Test type</span><span class="rv">Two-sided Z-test</span></div>
+            <div class="rr"><span class="rk">Primary KPI</span><span class="rv" id="ckpi">CTR</span></div>
+            <div class="rr"><span class="rk">Guardrail metric</span><span class="rv" id="cg2">Unsubscribe Rate</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pn mt">
+    <div class="pnh">
+      <span class="pnt">LIVE EXPERIMENTS MONITOR</span>
+      <div class="flex"><button class="btn btn-o btn-sm" onclick="tickAll(1)">+1 Day</button><button class="btn btn-o btn-sm" onclick="tickAll(7)">+7 Days</button></div>
+    </div>
+    <div class="scroll-x">
+      <table class="dt">
+        <thead><tr><th>ID</th><th>Type</th><th>Day</th><th>Ctrl Rate</th><th>Trt Rate</th><th>Lift</th><th>N each</th><th>p-value</th><th>Confidence</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="p3tb"><tr><td colspan="11" class="cm" style="text-align:center;padding:1.5rem">No experiments yet</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="g2 mt">
+    <div class="pn">
+      <div class="pnh"><span class="pnt">CONFIDENCE OVER TIME</span></div>
+      <div class="pnb"><div class="cw"><canvas id="p3sig" class="cht"></canvas></div></div>
+    </div>
+    <div class="pn">
+      <div class="pnh"><span class="pnt">CLAUDE AI — EXPERIMENT INSIGHT REPORT</span></div>
+      <div class="pnb" id="p3report"><div style="font-family:var(--mo);font-size:0.68rem;color:var(--mu);text-align:center;padding:3rem 0">Launch an experiment and simulate days.<br>When significance is reached, Claude writes a live report.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fn">Rahul Reddy Puchakayala</span>
+  <div class="fm">
+    <div>AI & Data Product Portfolio · Capital One MarTech</div>
+    <div style="margin-top:0.2rem;opacity:0.5">Powered by Claude API · All analysis AI-generated · No templates</div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════
+// UTILS
+// ═══════════════════════════════════
+const R = (a,b) => Math.random()*(b-a)+a;
+const RI = (a,b) => Math.floor(R(a,b+1));
+const clamp = (v,a,b) => Math.max(a, Math.min(b,v));
+const ts = () => new Date().toLocaleTimeString('en-US',{hour12:false});
+const fN = v => parseInt(v).toLocaleString();
+const fP = v => (v*100).toFixed(2)+'%';
+
+function addLog(id, msg, type='') {
+  const b = document.getElementById(id);
+  const d = document.createElement('div'); d.className='ll';
+  d.innerHTML=`<span class="lt">${ts()}</span><span class="lm ${type}">${msg}</span>`;
+  b.appendChild(d); b.scrollTop=b.scrollHeight;
+}
+
+// ═══════════════════════════════════
+// CLAUDE API CALL
+// ═══════════════════════════════════
+async function callClaude(prompt, targetEl, streaming=true) {
+  targetEl.innerHTML = '<span class="ai-typing"></span>';
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.map(b => b.text||'').join('') || 'No response.';
+    // Typewriter effect
+    targetEl.textContent = '';
+    let i = 0;
+    const cursor = document.createElement('span'); cursor.className='ai-typing';
+    targetEl.appendChild(cursor);
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        targetEl.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+      } else { clearInterval(interval); cursor.remove(); }
+    }, 10);
+  } catch(e) {
+    targetEl.textContent = 'Claude API call failed. Make sure you are running this in Claude.ai with API access enabled.\n\nError: ' + e.message;
+  }
+}
+
+// ═══════════════════════════════════
+// HERO CANVAS
+// ═══════════════════════════════════
+(function() {
+  const c = document.getElementById('hc'), ctx = c.getContext('2d');
+  let W, H, nodes = [];
+  function resize() { W=c.width=c.offsetWidth; H=c.height=c.offsetHeight; }
+  resize(); window.addEventListener('resize', ()=>{resize();init();});
+  function init() { nodes=[]; const n=Math.floor(W*H/10000); for(let i=0;i<n;i++) nodes.push({x:R(0,W),y:R(0,H),vx:R(-0.2,0.2),vy:R(-0.2,0.2),r:R(1.5,2.8)}); }
+  init();
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++) {
+      const d = Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y);
+      if(d<85) { ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.strokeStyle=`rgba(63,185,80,${0.5*(1-d/85)})`; ctx.lineWidth=0.5; ctx.stroke(); }
+    }
+    nodes.forEach(n => { ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle='rgba(63,185,80,0.85)'; ctx.fill(); n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ═══════════════════════════════════
+// PROJECT 1 — CLUSTERING + NBA
+// ═══════════════════════════════════
+let P1_CUSTOMERS = [], P1_ASSIGNMENTS = [], P1_CENTROIDS = [], P1_K = 3;
+let p1ScatterChart = null;
+const SEG_COLORS = ['#3fb950','#58a6ff','#e3a838','#f85149','#bc8cff'];
+const MSGS = [
+  {id:'CC_REWARDS',  name:'Cash Back Credit Card',         ch:'Email',  feat:[0.9,0.75,0.2,0.82,0.5],  offer:'2% cash back on every purchase — no annual fee'},
+  {id:'SAVINGS',     name:'High-Yield Savings 4.85% APY',  ch:'Push',   feat:[0.15,0.2,0.95,0.35,0.95], offer:'Earn 4.85% APY — open in under 2 minutes'},
+  {id:'TRAVEL',      name:'Venture X Travel Card',          ch:'Email',  feat:[0.9,0.88,0.25,0.78,0.48], offer:'75,000 bonus miles on first $4k spend'},
+  {id:'SECURITY',    name:'Eno® AI Assistant Feature',      ch:'In-App', feat:[0.5,0.5,0.5,0.92,0.32],   offer:'Enable Eno for real-time fraud protection'},
+  {id:'BALANCE',     name:'Balance Transfer 0% APR',        ch:'SMS',    feat:[0.25,0.18,0.82,0.5,0.92],  offer:'0% APR for 18 months — no transfer fee'},
+  {id:'INVEST',      name:'Capital One Investing Intro',    ch:'Email',  feat:[0.6,0.75,0.78,0.28,0.72],  offer:'Start with $1 — automated rebalancing included'},
+];
+
+function parseCSV(raw) {
+  const lines = raw.trim().split('\n').filter(l=>l.trim()&&!l.startsWith('name'));
+  return lines.map((line, idx) => {
+    const p = line.split(',').map(v=>v.trim());
+    return {
+      id: 'C'+String(idx+1).padStart(3,'0'),
+      name: p[0]||'Customer'+idx,
+      spend: parseFloat(p[1])||R(100,3000),
+      freq: parseFloat(p[2])||R(2,30),
+      recency: parseFloat(p[3])||R(1,90),
+      digital: clamp(parseFloat(p[4])||R(0.1,1), 0, 1),
+      savings: clamp(parseFloat(p[5])||R(0.1,1), 0, 1),
+      cluster: -1, norm: {}
+    };
+  });
+}
+
+function normalizeCustomers(cs) {
+  const flds = ['spend','freq','recency','digital','savings'];
+  const mins={}, maxs={};
+  flds.forEach(f => { mins[f]=Math.min(...cs.map(c=>c[f])); maxs[f]=Math.max(...cs.map(c=>c[f])); });
+  cs.forEach(c => flds.forEach(f => c.norm[f] = (maxs[f]-mins[f])<1e-9 ? 0 : (c[f]-mins[f])/(maxs[f]-mins[f])));
+  return cs;
+}
+
+function kmeansPP(cs, k, maxIt=30) {
+  const flds = ['spend','freq','recency','digital','savings'];
+  const dist = (a,b) => Math.sqrt(flds.map(f=>(a[f]-b[f])**2).reduce((s,v)=>s+v,0));
+  // K-Means++ init
+  let cens = [{...cs[RI(0,cs.length-1)].norm}];
+  for(let i=1;i<k;i++) {
+    const ds = cs.map(c => Math.min(...cens.map(cn=>dist(c.norm,cn))));
+    const sum = ds.reduce((a,b)=>a+b,0);
+    let r=R(0,sum), cum=0;
+    for(let j=0;j<cs.length;j++) { cum+=ds[j]; if(cum>=r){cens.push({...cs[j].norm});break;} }
+  }
+  let asgn = new Array(cs.length).fill(0);
+  for(let it=0;it<maxIt;it++) {
+    let changed=false;
+    cs.forEach((c,i) => { const ds=cens.map(cn=>dist(c.norm,cn)); const b=ds.indexOf(Math.min(...ds)); if(b!==asgn[i]){asgn[i]=b;changed=true;} });
+    if(!changed) break;
+    cens = cens.map((_,ci) => { const m=cs.filter((_,i)=>asgn[i]===ci); if(!m.length)return cens[ci]; const avg={}; flds.forEach(f=>avg[f]=m.map(c=>c.norm[f]).reduce((a,b)=>a+b,0)/m.length); return avg; });
+  }
+  return {asgn, cens};
+}
+
+function cosim(a, b) {
+  const dot = a.reduce((s,v,i)=>s+v*b[i],0);
+  return dot / (Math.sqrt(a.reduce((s,v)=>s+v*v,0)) * Math.sqrt(b.reduce((s,v)=>s+v*v,0)) + 1e-9);
+}
+
+async function runP1() {
+  const rawCSV = document.getElementById('csvInput').value;
+  const k = parseInt(document.getElementById('p1k').value);
+  P1_K = k;
+
+  // Disable run button while working
+  const runBtn = document.getElementById('p1RunBtn');
+  if(runBtn){ runBtn.disabled=true; runBtn.textContent='⏳ Running...'; }
+
+  document.getElementById('s1dot').className='dot dot-run';
+  document.getElementById('s1stat').textContent='Running...';
+  document.getElementById('p1log').innerHTML='';
+  document.getElementById('p1clusterResults').style.display='none';
+
+  addLog('p1log', `Parsing customer CSV data...`, 'i');
+  let customers;
+  try { customers = parseCSV(rawCSV); }
+  catch(e) { addLog('p1log', 'CSV parse error: '+e.message, 'e'); if(runBtn){runBtn.disabled=false;runBtn.textContent='▶ Cluster + AI Profile Segments';} return; }
+  if(customers.length < k) { addLog('p1log', `Need at least ${k} customers. Found ${customers.length}.`, 'e'); if(runBtn){runBtn.disabled=false;runBtn.textContent='▶ Cluster + AI Profile Segments';} return; }
+
+  addLog('p1log', `Loaded ${customers.length} customers · 5 features: spend, freq, recency, digital, savings`);
+  addLog('p1log', `Normalizing feature vectors to [0,1]...`);
+  P1_CUSTOMERS = normalizeCustomers(customers);
+
+  addLog('p1log', `Running K-Means++ with k=${k}, max 30 iterations...`, 'i');
+  const {asgn, cens} = kmeansPP(P1_CUSTOMERS, k);
+  P1_ASSIGNMENTS = asgn; P1_CENTROIDS = cens;
+  asgn.forEach((c,i) => P1_CUSTOMERS[i].cluster=c);
+
+  const groups = [];
+  for(let c=0;c<k;c++) groups.push(P1_CUSTOMERS.filter(cu=>cu.cluster===c));
+  addLog('p1log', `K-Means converged.`);
+  groups.forEach((g,i) => addLog('p1log', `  Cluster ${i}: ${g.length} members`));
+
+  // Render scatter
+  renderP1Scatter(k, groups);
+
+  // Render cluster table
+  const tb = document.getElementById('p1ctbody'); tb.innerHTML='';
+  const avg = (arr,f) => arr.map(x=>x[f]).reduce((a,b)=>a+b,0)/arr.length;
+  groups.forEach((g,i) => {
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><span class="bx" style="background:${SEG_COLORS[i]}22;color:${SEG_COLORS[i]};border:1px solid ${SEG_COLORS[i]}44">Cluster ${i}</span></td><td class="cg">${g.length}</td><td>$${avg(g,'spend').toFixed(0)}</td><td>${avg(g,'freq').toFixed(1)}/mo</td><td>${avg(g,'recency').toFixed(0)}d</td><td>${(avg(g,'digital')*100).toFixed(0)}%</td><td>${(avg(g,'savings')*100).toFixed(0)}%</td>`;
+    tb.appendChild(tr);
+  });
+
+  document.getElementById('p1clusterResults').style.display='block';
+  document.getElementById('s1dot').className='dot dot-ok';
+  document.getElementById('s1stat').textContent='Done';
+
+  // AI SEGMENT PROFILING — real Claude call
+  addLog('p1log', `Calling Claude API to profile each segment...`, 'i');
+  const clusterSummaries = groups.map((g,i) => {
+    const a=f=>avg(g,f);
+    return `Cluster ${i} (${g.length} members): avg_spend=$${a('spend').toFixed(0)}, avg_freq=${a('freq').toFixed(1)}/mo, avg_recency=${a('recency').toFixed(0)}days, digital_score=${(a('digital')*100).toFixed(0)}%, savings_affinity=${(a('savings')*100).toFixed(0)}%`;
+  }).join('\n');
+
+  const prompt = `You are a MarTech data scientist at Capital One analyzing customer segments.
+
+Here are the K-Means cluster results from real customer behavioral data:
+${clusterSummaries}
+
+For EACH cluster, write:
+1. A descriptive segment name (2-4 words, e.g. "High-Value Digital Actives")
+2. A 2-sentence behavioral profile
+3. The #1 marketing priority for this segment
+4. Which Capital One product they are most likely to respond to (Credit Card, Savings, Investing, Balance Transfer) and why
+
+Be specific and data-driven. Reference the actual numbers. Keep each cluster to 6-8 lines total. Use the cluster numbers as headers.`;
+
+  const aiDiv = document.createElement('div');
+  aiDiv.style.cssText='margin-top:0.75rem';
+  document.getElementById('p1aiprofiles').innerHTML='<div style="font-family:var(--mo);font-size:0.58rem;color:var(--mu);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem">CLAUDE AI SEGMENT PROFILES</div>';
+  const aiBox = document.createElement('div'); aiBox.className='ai-box';
+  document.getElementById('p1aiprofiles').appendChild(aiBox);
+  await callClaude(prompt, aiBox);
+  addLog('p1log', '✓ AI segment profiles generated');
+
+  // Populate customer dropdown
+  const sel = document.getElementById('p1csel');
+  sel.innerHTML='<option value="">— select a customer —</option>';
+  P1_CUSTOMERS.forEach((c,i)=>{
+    const o=document.createElement('option'); o.value=i;
+    o.textContent=`${c.name} · Cluster ${c.cluster}`;
+    sel.appendChild(o);
+  });
+  document.getElementById('s2dot').className='dot dot-idle';
+  document.getElementById('s2stat').textContent='Ready — select customer';
+  if(runBtn){ runBtn.disabled=false; runBtn.textContent='▶ Cluster + AI Profile Segments'; }
+}
+
+function renderP1Scatter(k, groups) {
+  const ctx = document.getElementById('p1scatter').getContext('2d');
+  if(p1ScatterChart) p1ScatterChart.destroy();
+  p1ScatterChart = new Chart(ctx, {
+    type: 'bubble',
+    data: { datasets: groups.map((m,i)=>({ label:`Cluster ${i}`, data:m.map(c=>({x:+c.spend.toFixed(0),y:+c.freq.toFixed(1),r:4})), backgroundColor:SEG_COLORS[i]+'88', borderColor:SEG_COLORS[i], borderWidth:1 })) },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#7d8590',font:{family:'IBM Plex Mono',size:9},boxWidth:8}}}, scales:{x:{title:{display:true,text:'Monthly Spend ($)',color:'#7d8590',font:{family:'IBM Plex Mono',size:9}},ticks:{color:'#7d8590',font:{size:8}},grid:{color:'#21262d'}},y:{title:{display:true,text:'Txn Frequency',color:'#7d8590',font:{family:'IBM Plex Mono',size:9}},ticks:{color:'#7d8590',font:{size:8}},grid:{color:'#21262d'}}}}
+  });
+}
+
+async function runNBA() {
+  const idx = parseInt(document.getElementById('p1csel').value);
+  if(isNaN(idx)) return;
+  const c = P1_CUSTOMERS[idx];
+  document.getElementById('p1nba').style.display='block';
+  document.getElementById('s2dot').className='dot dot-run';
+  document.getElementById('s2stat').textContent='Computing...';
+
+  // Feature bars
+  const featLabels = ['Monthly Spend','Txn Frequency','Recency','Digital Score','Savings Affinity'];
+  const featKeys = ['spend','freq','recency','digital','savings'];
+  const featFmt = [v=>'$'+v.toFixed(0), v=>v.toFixed(1)+'/mo', v=>v.toFixed(0)+'d', v=>(v*100).toFixed(0)+'%', v=>(v*100).toFixed(0)+'%'];
+  const fColors = ['g','b','o','p','r'];
+  const cfEl = document.getElementById('p1cfeats'); cfEl.innerHTML='';
+  featKeys.forEach((f,i) => {
+    const d=document.createElement('div'); d.className='pg';
+    d.innerHTML=`<div class="pgh"><span class="pgn">${featLabels[i]}</span><span class="pgv">${featFmt[i](c[f])}</span></div><div class="pgt"><div class="pgf ${fColors[i]}" style="width:${(c.norm[f]*100).toFixed(0)}%"></div></div>`;
+    cfEl.appendChild(d);
+  });
+
+  // Cosine similarity
+  const cvec = [c.norm.spend, c.norm.freq, 1-c.norm.recency, c.norm.digital, c.norm.savings];
+  const scored = MSGS.map(m=>({...m, score:cosim(cvec,m.feat)})).sort((a,b)=>b.score-a.score);
+  const cEl = document.getElementById('p1cosine'); cEl.innerHTML='<div style="font-family:var(--mo);font-size:0.58rem;color:var(--mu);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem">COSINE SIMILARITY SCORES</div>';
+  const sc=['g','b','o','r','p','t'];
+  scored.forEach((m,i)=>{
+    const d=document.createElement('div'); d.className='pg';
+    d.innerHTML=`<div class="pgh"><span class="pgn" style="font-size:0.6rem">${m.name}</span><span class="pgv">${(m.score*100).toFixed(1)}%</span></div><div class="pgt"><div class="pgf ${sc[i%sc.length]}" style="width:${(m.score*100).toFixed(1)}%"></div></div>`;
+    cEl.appendChild(d);
+  });
+
+  // REAL CLAUDE CALL for NBA
+  const groups = [];
+  for(let i=0;i<P1_K;i++) groups.push(P1_CUSTOMERS.filter(cu=>cu.cluster===i));
+  const avg = (g,f) => g.map(x=>x[f]).reduce((a,b)=>a+b,0)/g.length;
+  const clusterProfile = groups[c.cluster];
+
+  const prompt = `You are a personalization AI at Capital One. A customer needs a next-best-action recommendation.
+
+CUSTOMER DATA:
+- Name: ${c.name}
+- Cluster: ${c.cluster} (${clusterProfile.length} similar customers)
+- Monthly Spend: $${c.spend.toFixed(0)} (cluster avg: $${avg(clusterProfile,'spend').toFixed(0)})
+- Transaction Frequency: ${c.freq.toFixed(1)}/month (cluster avg: ${avg(clusterProfile,'freq').toFixed(1)})
+- Recency: ${c.recency.toFixed(0)} days since last transaction (cluster avg: ${avg(clusterProfile,'recency').toFixed(0)})
+- Digital Engagement: ${(c.digital*100).toFixed(0)}% (cluster avg: ${(avg(clusterProfile,'digital')*100).toFixed(0)}%)
+- Savings Affinity: ${(c.savings*100).toFixed(0)}% (cluster avg: ${(avg(clusterProfile,'savings')*100).toFixed(0)}%)
+
+COSINE SIMILARITY RANKINGS (computed):
+${scored.map((m,i)=>`${i+1}. ${m.name} (${(m.score*100).toFixed(1)}% similarity) via ${m.ch}`).join('\n')}
+
+Write a personalized recommendation in 3-4 sentences. Include:
+1. Which product to recommend and WHY (reference their specific numbers)
+2. Which channel to use and the optimal timing
+3. One specific piece of copy you would use
+4. What segment behavior this is based on
+
+Be specific. Use the actual customer data numbers. Do not use placeholders or templates.`;
+
+  const recEl = document.getElementById('p1nbarec');
+  await callClaude(prompt, recEl);
+  document.getElementById('s2dot').className='dot dot-ok';
+  document.getElementById('s2stat').textContent='Done';
+}
+
+function resetP1() {
+  P1_CUSTOMERS=[]; P1_ASSIGNMENTS=[]; P1_CENTROIDS=[];
+  if(p1ScatterChart){p1ScatterChart.destroy();p1ScatterChart=null;}
+  document.getElementById('p1clusterResults').style.display='none';
+  document.getElementById('p1nba').style.display='none';
+  document.getElementById('p1log').innerHTML='';
+  document.getElementById('p1csel').innerHTML='<option value="">— run clustering first —</option>';
+  document.getElementById('s1dot').className='dot dot-idle'; document.getElementById('s1stat').textContent='Ready';
+  document.getElementById('s2dot').className='dot dot-idle'; document.getElementById('s2stat').textContent='Run clustering first';
+}
+
+// ═══════════════════════════════════
+// MATH: A/B TEST
+// ═══════════════════════════════════
+function erf(x) { const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911; const s=x<0?-1:1; x=Math.abs(x); const t=1/(1+p*x); const y=1-(((((a5*t+a4)*t+a3)*t+a2)*t+a1)*t)*Math.exp(-x*x); return s*y; }
+function ncdf(z) { return 0.5*(1+erf(z/Math.SQRT2)); }
+function lgamma(z) { const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5]; let x=z,y=z,tmp=x+5.5; tmp-=(x+0.5)*Math.log(tmp); let ser=1.000000000190015; for(let j=0;j<6;j++){y++;ser+=c[j]/y;} return -tmp+Math.log(2.5066282746310005*ser/x); }
+function betaPDF(x,a,b) { if(x<=0||x>=1)return 0; return Math.exp((a-1)*Math.log(x)+(b-1)*Math.log(1-x)-(lgamma(a)+lgamma(b)-lgamma(a+b))); }
+
+let abChartObj=null, abLastStats={};
+function calcAB() {
+  const ctrl=parseFloat(document.getElementById('abA').value)/100;
+  const trt=parseFloat(document.getElementById('abB').value)/100;
+  const n=parseInt(document.getElementById('abN').value);
+  // Deterministic — exact binomial expectation (no random noise on every drag)
+  const ctrlC=Math.round(n*ctrl);
+  const trtC=Math.round(n*trt);
+  const oc=ctrlC/n, ot=trtC/n;
+  const pp=(ctrlC+trtC)/(2*n);
+  const se=Math.sqrt(pp*(1-pp)*(2/n)+1e-12);
+  const z=Math.abs(ot-oc)/(se+1e-12);
+  const pval=clamp(2*(1-ncdf(z)),1e-10,1);
+  const conf=clamp((1-pval)*100,0,99.99);
+  const sig=pval<0.05;
+  const lift=(ot-oc)/oc*100;
+  abLastStats={ctrl,trt,n,ctrlC,trtC,oc,ot,z,pval,conf,sig,lift};
+
+  document.getElementById('abAval').textContent=(oc*100).toFixed(2)+'%';
+  document.getElementById('abBval').textContent=(ot*100).toFixed(2)+'%';
+  document.getElementById('abBbox').className='ab'+(sig&&ot>oc?' win':'');
+  document.getElementById('abwinner').innerHTML=sig&&ot>oc?'<span class="bx bg">WINNER</span>':'';
+  document.getElementById('abAsub').innerHTML=`<span style="font-family:var(--mo);font-size:0.65rem;color:var(--mu)">${fN(ctrlC)} / ${fN(n)} converted</span>`;
+  document.getElementById('abBsub').innerHTML=`<span style="font-family:var(--mo);font-size:0.65rem;color:${sig&&ot>oc?'var(--gr)':'var(--mu)'}">${fN(trtC)} / ${fN(n)} converted</span>`;
+  document.getElementById('abstats').innerHTML=`
+    <div class="rr"><span class="rk">Z-statistic</span><span class="rv">${z.toFixed(4)}</span></div>
+    <div class="rr"><span class="rk">p-value</span><span class="rv" style="color:${pval<0.05?'var(--gr)':'var(--re)'}">${pval.toFixed(5)}</span></div>
+    <div class="rr"><span class="rk">Confidence</span><span class="rv">${conf.toFixed(2)}%</span></div>
+    <div class="rr"><span class="rk">Relative Lift</span><span class="rv" style="color:${lift>0?'var(--gr)':'var(--re)'}">${lift>0?'+':''}${lift.toFixed(2)}%</span></div>
+    <div class="rr"><span class="rk">Significant?</span><span class="rv" style="color:${sig?'var(--gr)':'var(--mu)'}">${sig?'✓ YES (p<0.05)':'✗ Not yet'}</span></div>
+    <div class="rr"><span class="rk">Abs. lift</span><span class="rv">${((ot-oc)*100).toFixed(3)} pp</span></div>
+  `;
+  // Beta posterior chart
+  const ctx=document.getElementById('abchart').getContext('2d');
+  if(abChartObj)abChartObj.destroy();
+  const xs=[],ay=[],by=[];
+  const ac=ctrlC+1,bc=(n-ctrlC)+1,at=trtC+1,bt=(n-trtC)+1;
+  for(let i=0;i<=80;i++){const x=i/80;xs.push((x*100).toFixed(1)+'%');ay.push(betaPDF(x,ac,bc));by.push(betaPDF(x,at,bt));}
+  abChartObj=new Chart(ctx,{type:'line',data:{labels:xs,datasets:[{label:'Control Posterior',data:ay,borderColor:'#7d8590',backgroundColor:'rgba(125,133,144,0.08)',fill:true,tension:0.4,pointRadius:0,borderWidth:2},{label:'Treatment Posterior',data:by,borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.1)',fill:true,tension:0.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7d8590',font:{family:'IBM Plex Mono',size:9},boxWidth:8}}},scales:{x:{ticks:{color:'#7d8590',font:{size:8},maxTicksLimit:8},grid:{color:'#21262d'}},y:{title:{display:true,text:'Posterior Density',color:'#7d8590',font:{family:'IBM Plex Mono',size:9}},ticks:{color:'#7d8590',font:{size:8}},grid:{color:'#21262d'}}}}});
+}
+setTimeout(calcAB, 200);
+
+async function runABInterpret() {
+  const s = abLastStats;
+  if(!s.n) return;
+  const btn = document.getElementById('abAIbtn');
+  btn.disabled = true; btn.textContent = '⏳ Calling Claude...';
+  document.getElementById('abaibox').style.display='block';
+  const el = document.getElementById('abaicontent');
+  const prompt = `You are a Senior Data Scientist at Capital One reviewing an A/B test result.
+
+A/B TEST RESULTS:
+- Experiment: Email marketing message variant test
+- Control (A) CTR: ${(s.oc*100).toFixed(2)}% (${fN(s.ctrlC)} conversions / ${fN(s.n)} sent)
+- Treatment (B) CTR: ${(s.ot*100).toFixed(2)}% (${fN(s.trtC)} conversions / ${fN(s.n)} sent)
+- Relative Lift: ${s.lift>0?'+':''}${s.lift.toFixed(2)}%
+- Z-statistic: ${s.z.toFixed(4)}
+- p-value: ${s.pval.toFixed(5)}
+- Confidence: ${s.conf.toFixed(2)}%
+- Statistically significant (p<0.05): ${s.sig?'YES':'NO'}
+
+Write a 4-6 sentence interpretation for a business stakeholder. Cover:
+1. What the result means in plain English
+2. Whether to ship Treatment B or keep Control A (with reasoning)
+3. What you would test next
+4. Any caveats or risks to the decision
+
+Be direct. Reference the actual numbers. No bullet points — write in flowing prose.`;
+
+  await callClaude(prompt, el);
+  btn.disabled = false; btn.textContent = '🤖 Ask Claude to Interpret Results';
+}
+
+// ═══════════════════════════════════
+// PROJECT 2 — ETL PIPELINE
+// ═══════════════════════════════════
+let P2_PROFILES=[], p2SegChart=null;
+
+function p2generate(n, mr) {
+  const profiles=[];
+  const resolved=Math.round(n*mr);
+  const CHANNELS=['Email','Push','SMS','In-App'];
+  const LIFECYCLES=['New','Growing','Mature','At-Risk','Lapsed'];
+  for(let i=0;i<resolved;i++){
+    const spend=R(0,3500); const sess=RI(0,100); const opens=RI(0,25); const mob=R(0,1); const rec=RI(1,90);
+    const ltv=spend*0.38+sess*5+opens*10+mob*100;
+    const churn=clamp(1-(ltv/1500)*R(0.5,1.1),0.01,0.99);
+    const pch=CHANNELS[spend>1500&&sess>30?0:mob>0.65?1:opens>12?2:3];
+    const lc=LIFECYCLES[churn>0.68?3:rec>65?4:i<resolved*0.08?0:ltv>750?1:2];
+    const seg=ltv>1000?'High-Value Active':ltv>550?'Growing':spend<200&&sess<8?'At-Risk':'Developing';
+    profiles.push({id:'C'+String(i+1).padStart(5,'0'),ltv:ltv.toFixed(0),spend:spend.toFixed(0),sess,opens,mob:mob.toFixed(2),churn:churn.toFixed(3),ch:pch,lc,seg,dq:(R(0.79,0.99)*100).toFixed(0)});
+  }
+  return profiles;
+}
+
+function pearson(a,b) {
+  const n=a.length, ma=a.reduce((s,v)=>s+v,0)/n, mb=b.reduce((s,v)=>s+v,0)/n;
+  const num=a.map((v,i)=>(v-ma)*(b[i]-mb)).reduce((s,v)=>s+v,0);
+  const da=Math.sqrt(a.map(v=>(v-ma)**2).reduce((s,v)=>s+v,0));
+  const db=Math.sqrt(b.map(v=>(v-mb)**2).reduce((s,v)=>s+v,0));
+  return da*db<1e-9?0:clamp(num/(da*db),-1,1);
+}
+
+async function runP2() {
+  const nT=parseInt(document.getElementById('p2t').value);
+  const nW=parseInt(document.getElementById('p2w').value);
+  const nC=parseInt(document.getElementById('p2c').value);
+  const nM=parseInt(document.getElementById('p2m').value);
+  const mr=parseInt(document.getElementById('p2mr').value)/100;
+  const p2RunBtn=document.getElementById('p2RunBtn');
+  if(p2RunBtn){p2RunBtn.disabled=true;p2RunBtn.textContent='⏳ Running Pipeline...';}
+  const base=Math.max(nT,nW,nC,nM);
+
+  document.getElementById('p2dot').className='dot dot-run'; document.getElementById('p2stat').textContent='Running';
+  document.getElementById('p2log').innerHTML=''; document.getElementById('p2aiblock').style.display='none';
+
+  addLog('p2log',`Pipeline started · Sources: TXN(${nT}) WEB(${nW}) CRM(${nC}) MOB(${nM})`,'i');
+  addLog('p2log',`Total raw records: ${nT+nW+nC+nM}`);
+  await sleep(200);
+  addLog('p2log','[INGEST] Loading all 4 sources...');
+  await sleep(250);
+  addLog('p2log',`[IDENTITY] Probabilistic matching (email+device+phone)...`,'i');
+  addLog('p2log',`[IDENTITY] Match rate: ${(mr*100).toFixed(0)}% → ${Math.round(base*mr)} canonical IDs`);
+  addLog('p2log',`[IDENTITY] Quarantined: ${Math.round(base*(1-mr))} unresolved records`,'w');
+  await sleep(300);
+  addLog('p2log','[FEATURES] Computing LTV, churn risk, preferred channel, lifecycle...','i');
+  P2_PROFILES = p2generate(base, mr);
+  addLog('p2log',`[FEATURES] Engineered features for ${P2_PROFILES.length} unified profiles`);
+  await sleep(250);
+
+  const comp=R(0.94,0.989); const fresh=R(0.88,0.975); const cov=R(0.90,0.982);
+  addLog('p2log','[DQ] Computing quality metrics...','i');
+  addLog('p2log',`[DQ] Completeness: ${(comp*100).toFixed(1)}% · Freshness: ${(fresh*100).toFixed(1)}%`);
+  addLog('p2log',`[DQ] Coverage: ${(cov*100).toFixed(1)}% · Match: ${(mr*100).toFixed(0)}%`);
+  addLog('p2log','✓ Pipeline complete');
+
+  document.getElementById('p2dot').className='dot dot-ok'; document.getElementById('p2stat').textContent='Complete';
+  document.getElementById('p2cnt').textContent=`${P2_PROFILES.length} profiles`;
+
+  renderP2DQ(comp,fresh,mr,cov);
+  renderP2Profiles();
+  renderP2Seg();
+  renderP2Corr();
+
+  // REAL CLAUDE CALL — data strategy
+  const segs={};
+  P2_PROFILES.forEach(p=>segs[p.seg]=(segs[p.seg]||0)+1);
+  const avgLTV=P2_PROFILES.map(p=>+p.ltv).reduce((a,b)=>a+b,0)/P2_PROFILES.length;
+  const avgChurn=P2_PROFILES.map(p=>+p.churn).reduce((a,b)=>a+b,0)/P2_PROFILES.length;
+  const segStr=Object.entries(segs).map(([s,n])=>`${s}: ${n} customers (${(n/P2_PROFILES.length*100).toFixed(0)}%)`).join(', ');
+  const churnHigh=P2_PROFILES.filter(p=>+p.churn>0.6).length;
+
+  const prompt = `You are a Senior Marketing Data Scientist at Capital One. You just ran an ETL pipeline that produced these results from a real Customer 360 platform:
+
+PIPELINE OUTPUT:
+- Total unified profiles: ${P2_PROFILES.length}
+- Identity match rate: ${(mr*100).toFixed(0)}%
+- Average LTV Score: $${avgLTV.toFixed(0)}
+- Average churn risk: ${(avgChurn*100).toFixed(1)}%
+- High churn risk (>60%) customers: ${churnHigh} (${(churnHigh/P2_PROFILES.length*100).toFixed(0)}% of base)
+- Segment breakdown: ${segStr}
+- Schema completeness: ${(comp*100).toFixed(1)}%
+- Data freshness: ${(fresh*100).toFixed(1)}%
+
+Write a 200-word Data Strategy Report covering:
+1. What the data tells you about this customer base
+2. The top 2 immediate targeting priorities (be specific — which segment, which product, which channel)
+3. One data quality concern and how you'd resolve it
+4. What additional data source would most improve this Customer 360
+
+Be specific to these numbers. Write in the voice of a senior data scientist presenting to the CMO.`;
+
+  document.getElementById('p2aiblock').style.display='block';
+  await callClaude(prompt, document.getElementById('p2aicontent'));
+  if(p2RunBtn){p2RunBtn.disabled=false;p2RunBtn.textContent='▶ Run ETL + AI Report';}
+}
+
+function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+
+function renderP2DQ(comp,fresh,match,cov) {
+  const el=document.getElementById('p2dq'); el.innerHTML='';
+  [{n:'Schema Completeness',v:comp,c:'g'},{n:'Identity Match Rate',v:match,c:'b'},{n:'Data Freshness',v:fresh,c:'o'},{n:'Segment Coverage',v:cov,c:'p'}].forEach(item=>{
+    const d=document.createElement('div'); d.className='pg';
+    const pct=(item.v*100).toFixed(1);
+    d.innerHTML=`<div class="pgh"><span class="pgn">${item.n}</span><span class="pgv">${pct}%</span></div><div class="pgt"><div class="pgf ${item.c}" style="width:${pct}%"></div></div>`;
+    el.appendChild(d);
+  });
+  const ov=(comp+fresh+match+cov)/4;
+  const s=document.createElement('div'); s.style.cssText='margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--b1)';
+  s.innerHTML=`<div style="font-family:var(--mo);font-size:0.56rem;color:var(--mu);letter-spacing:0.1em;text-transform:uppercase">Overall DQ Score</div><div class="mv ${ov>0.9?'g':'o'}">${(ov*100).toFixed(1)}%</div>`;
+  el.appendChild(s);
+}
+
+function renderP2Profiles() {
+  const tb=document.getElementById('p2pbody'); tb.innerHTML='';
+  P2_PROFILES.slice(0,80).forEach(p=>{
+    const cc=parseFloat(p.churn)>0.6?'cr':parseFloat(p.churn)>0.3?'co':'cg';
+    const sc=p.seg==='High-Value Active'?'bg':p.seg==='Growing'?'bb':p.seg==='At-Risk'?'br':'bo';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="cm">${p.id}</td><td class="cb">$${parseInt(p.ltv).toLocaleString()}</td><td>$${parseInt(p.spend).toLocaleString()}</td><td>${p.sess}</td><td>${p.opens}</td><td>${p.mob}</td><td class="${cc}">${p.churn}</td><td>${p.ch}</td><td class="cm" style="font-size:0.65rem">${p.lc}</td><td><span class="bx ${sc}">${p.seg}</span></td><td>${p.dq}%</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function renderP2Seg() {
+  const ctx=document.getElementById('p2seg').getContext('2d');
+  if(p2SegChart)p2SegChart.destroy();
+  const segs={};P2_PROFILES.forEach(p=>segs[p.seg]=(segs[p.seg]||0)+1);
+  p2SegChart=new Chart(ctx,{type:'doughnut',data:{labels:Object.keys(segs),datasets:[{data:Object.values(segs),backgroundColor:['#3fb95099','#58a6ff99','#f8514999','#e3a83899'],borderColor:['#3fb950','#58a6ff','#f85149','#e3a838'],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#7d8590',font:{family:'IBM Plex Mono',size:9},boxWidth:8,padding:8}}}}});
+}
+
+function renderP2Corr() {
+  const el=document.getElementById('p2corr');
+  const fields=['LTV','Spend','Sessions','Opens','Mobile','Churn'];
+  const data={LTV:P2_PROFILES.map(p=>+p.ltv),Spend:P2_PROFILES.map(p=>+p.spend),Sessions:P2_PROFILES.map(p=>p.sess),Opens:P2_PROFILES.map(p=>p.opens),Mobile:P2_PROFILES.map(p=>+p.mob),Churn:P2_PROFILES.map(p=>+p.churn)};
+  let html=`<div style="overflow-x:auto"><table class="dt" style="font-size:0.58rem;white-space:nowrap"><thead><tr><th></th>${fields.map(f=>`<th style="text-align:center">${f}</th>`).join('')}</tr></thead><tbody>`;
+  fields.forEach(fa=>{
+    html+=`<tr><td class="cm" style="white-space:nowrap;font-weight:500">${fa}</td>`;
+    fields.forEach(fb=>{
+      const r=fa===fb?1:pearson(data[fa],data[fb]);
+      const abs=Math.abs(r);
+      const col=r>0.5?'var(--gr)':r<-0.5?'var(--re)':r>0.2?'var(--bl)':'var(--mu)';
+      const bg=fa===fb?'rgba(255,255,255,0.06)':abs>0.4?`rgba(${r>0?'63,185,80':'248,81,73'},${abs*0.18})`:'transparent';
+      html+=`<td style="color:${col};background:${bg};text-align:center;padding:0.35rem 0.5rem">${r.toFixed(2)}</td>`;
+    });
+    html+=`</tr>`;
+  });
+  el.innerHTML=html+'</tbody></table></div>';
+}
+
+function resetP2() {
+  P2_PROFILES=[];if(p2SegChart){p2SegChart.destroy();p2SegChart=null;}
+  document.getElementById('p2log').innerHTML=''; document.getElementById('p2dq').innerHTML='<div style="font-family:var(--mo);font-size:0.68rem;color:var(--mu);text-align:center;padding:2.5rem 0">Run pipeline to compute</div>';
+  document.getElementById('p2pbody').innerHTML='<tr><td colspan="11" class="cm" style="text-align:center;padding:2rem">Run pipeline first</td></tr>';
+  document.getElementById('p2corr').innerHTML='<div style="font-family:var(--mo);font-size:0.68rem;color:var(--mu);text-align:center;padding:3rem 0">Run pipeline to compute</div>';
+  document.getElementById('p2dot').className='dot dot-idle'; document.getElementById('p2stat').textContent='Idle';
+  document.getElementById('p2cnt').textContent='0 profiles'; document.getElementById('p2aiblock').style.display='none';
+}
+
+// ═══════════════════════════════════
+// PROJECT 3 — EXPERIMENTATION
+// ═══════════════════════════════════
+let EXPS=[], p3SigChart=null, p3Count=0;
+const EXP_META = {subj:{label:'Email Subject',kpi:'Open Rate',guard:'Unsubscribe Rate'},land:{label:'Landing Page CTA',kpi:'CTR',guard:'Bounce Rate'},algo:{label:'NBA Algorithm',kpi:'Conversion Rate',guard:'Session Depth'},push:{label:'Push Notification',kpi:'Click Rate',guard:'Opt-Out Rate'}};
+
+function calcN() {
+  const base=parseFloat(document.getElementById('p3b').value)/100;
+  const mde=parseFloat(document.getElementById('p3mde').value)/100;
+  const pw=parseFloat(document.getElementById('p3pw').value)/100;
+  const alpha=document.getElementById('p3a').value; // keep as string for comparison
+  const traffic=parseInt(document.getElementById('p3tr').value);
+  const type=document.getElementById('p3type').value;
+  const p2=base*(1+mde);
+  const h=Math.abs(2*Math.asin(Math.sqrt(base))-2*Math.asin(Math.sqrt(clamp(p2,0.001,0.999))));
+  const za={'0.05':1.96,'0.01':2.576,'0.10':1.645}[alpha]||1.96;
+  const zb=pw>=0.90?1.282:pw>=0.80?0.842:0.524;
+  const n=Math.ceil(((za+zb)/h)**2);
+  const total=n*2, days=Math.ceil(total/(traffic/2));
+  document.getElementById('cn').textContent=fN(n);
+  document.getElementById('ct').textContent=fN(total);
+  document.getElementById('cd').textContent=days+' day'+(days!==1?'s':'');
+  document.getElementById('ch').textContent=h.toFixed(5);
+  document.getElementById('ckpi').textContent=EXP_META[type]?.kpi||'CTR';
+  document.getElementById('cg2').textContent=EXP_META[type]?.guard||'Unsubscribe Rate';
+}
+calcN();
+document.getElementById('p3type').addEventListener('change',calcN);
+
+function launchExp() {
+  const type=document.getElementById('p3type').value;
+  const base=parseFloat(document.getElementById('p3b').value)/100;
+  const mde=parseFloat(document.getElementById('p3mde').value)/100;
+  const alpha=parseFloat(document.getElementById('p3a').value);
+  const traffic=parseInt(document.getElementById('p3tr').value);
+  p3Count++;
+  const trueEff=base*(1+mde*R(0.6,1.5));
+  EXPS.push({id:'EXP-'+String(p3Count).padStart(3,'0'),type,meta:EXP_META[type],base,trt:clamp(trueEff,0.001,0.999),alpha,traffic,ctrlC:0,trtC:0,N:0,day:0,pval:1,conf:0,sig:false,lift:0,obs:{ctrl:base,trt:trueEff},hist:[],reported:false});
+  tickAll(1);
+}
+
+function tickExp(exp, days=1) {
+  for(let d=0;d<days;d++){
+    exp.day++;
+    const dpv=Math.floor(exp.traffic/4);
+    exp.ctrlC+=Math.round(dpv*exp.base+R(-dpv*exp.base*0.12,dpv*exp.base*0.12));
+    exp.trtC+=Math.round(dpv*exp.trt+R(-dpv*exp.trt*0.12,dpv*exp.trt*0.12));
+    exp.N+=dpv;
+    const oc=exp.ctrlC/exp.N, ot=exp.trtC/exp.N;
+    const pp=(exp.ctrlC+exp.trtC)/(2*exp.N);
+    const se=Math.sqrt(pp*(1-pp)*(2/exp.N)+1e-12);
+    const z=Math.abs(ot-oc)/(se+1e-12);
+    exp.pval=clamp(2*(1-ncdf(z)),1e-10,1);
+    exp.conf=clamp((1-exp.pval)*100,0,99.99);
+    exp.sig=exp.pval<exp.alpha;
+    exp.obs={ctrl:oc,trt:ot};
+    exp.lift=(ot-oc)/oc*100;
+    exp.hist.push(+exp.conf.toFixed(2));
+  }
+}
+
+async function tickAll(days=1) {
+  EXPS.forEach(e=>{if(!e.concluded)tickExp(e,days);});
+  redrawP3Table();
+  drawP3SigChart();
+  // Auto-report first newly significant
+  const sig=EXPS.find(e=>e.sig&&!e.reported);
+  if(sig){sig.reported=true; await genP3Report(sig);}
+}
+
+function redrawP3Table() {
+  const tb=document.getElementById('p3tb');
+  if(!EXPS.length){tb.innerHTML='<tr><td colspan="11" class="cm" style="text-align:center;padding:1.5rem">No experiments yet</td></tr>';return;}
+  tb.innerHTML='';
+  EXPS.slice().reverse().forEach(exp=>{
+    const lc=exp.lift>0?'cg':'cr';
+    const sb=exp.sig?'<span class="bx bg">SIGNIFICANT</span>':exp.day>28?'<span class="bx bo">INCONCLUSIVE</span>':'<span class="bx" style="border:1px solid var(--b2);color:var(--mu)">RUNNING</span>';
+    const pc=exp.pval<exp.alpha?'cg':'cm';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="cm">${exp.id}</td><td style="font-size:0.65rem">${exp.meta.label}</td><td>${exp.day}</td><td>${(exp.obs.ctrl*100).toFixed(2)}%</td><td>${(exp.obs.trt*100).toFixed(2)}%</td><td class="${lc}">${exp.lift>0?'+':''}${exp.lift.toFixed(1)}%</td><td>${fN(exp.N)}</td><td class="${pc}">${exp.pval.toFixed(4)}</td><td><div class="pgt" style="min-width:60px;margin-bottom:0.1rem"><div class="pgf ${exp.sig?'g':'o'}" style="width:${exp.conf.toFixed(0)}%"></div></div><span style="font-family:var(--mo);font-size:0.58rem;color:${exp.sig?'var(--gr)':'var(--mu)'}">${exp.conf.toFixed(1)}%</span></td><td>${sb}</td><td><button class="btn btn-o btn-sm" onclick="tickSingle('${exp.id}')">+1d</button></td>`;
+    tb.appendChild(tr);
+  });
+}
+
+async function tickSingle(id) {
+  const exp=EXPS.find(e=>e.id===id); if(!exp||exp.concluded)return;
+  tickExp(exp,1); redrawP3Table(); drawP3SigChart();
+  if(exp.sig&&!exp.reported){exp.reported=true; await genP3Report(exp);}
+}
+
+function drawP3SigChart() {
+  const ctx=document.getElementById('p3sig').getContext('2d');
+  if(p3SigChart)p3SigChart.destroy(); if(!EXPS.length)return;
+  const cols=['#3fb950','#58a6ff','#e3a838','#f85149','#bc8cff'];
+  p3SigChart=new Chart(ctx,{type:'line',data:{labels:Array.from({length:Math.max(...EXPS.map(e=>e.hist.length))},(_,i)=>'Day '+(i+1)),datasets:EXPS.map((e,i)=>({label:e.id+' '+e.meta.label,data:e.hist,borderColor:cols[i%cols.length],backgroundColor:'transparent',tension:0.4,pointRadius:2,borderWidth:2}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#7d8590',font:{family:'IBM Plex Mono',size:9},boxWidth:8}}},scales:{x:{ticks:{color:'#7d8590',font:{size:8}},grid:{color:'#21262d'}},y:{min:0,max:100,title:{display:true,text:'Confidence (%)',color:'#7d8590',font:{family:'IBM Plex Mono',size:9}},ticks:{color:'#7d8590',font:{size:8},callback:v=>v+'%'},grid:{color:'#21262d'}}}}});
+}
+
+async function genP3Report(exp) {
+  const el=document.getElementById('p3report');
+  const winner=exp.lift>0?'Treatment (B)':'Control (A)';
+  el.innerHTML=`<div style="font-family:var(--mo);font-size:0.56rem;letter-spacing:0.18em;color:var(--gr);text-transform:uppercase;margin-bottom:0.6rem">Claude AI Live Report · ${exp.id}</div><div id="p3aitext" class="ai-box"><span class="ai-typing"></span></div>`;
+  const prompt=`You are the Head of Experimentation at Capital One. An experiment just reached statistical significance.
+
+EXPERIMENT RESULTS:
+- ID: ${exp.id}
+- Type: ${exp.meta.label}
+- Primary KPI: ${exp.meta.kpi}
+- Guardrail metric: ${exp.meta.guard}
+- Runtime: ${exp.day} days
+- Control rate: ${(exp.obs.ctrl*100).toFixed(2)}%
+- Treatment rate: ${(exp.obs.trt*100).toFixed(2)}%
+- Relative lift: ${exp.lift>0?'+':''}${exp.lift.toFixed(2)}%
+- p-value: ${exp.pval.toFixed(5)}
+- Confidence: ${exp.conf.toFixed(2)}%
+- Total N exposed: ${fN(exp.N*2)}
+- Winner: ${winner}
+
+Write a concise experiment insight report (150 words). Include:
+1. RECOMMENDATION: Ship or do not ship — be definitive
+2. IMPACT: Estimated annualized impact if shipped
+3. NEXT TEST: Specific follow-up experiment idea
+4. RISK: One risk or caveat to monitor
+
+Use headers. Reference the actual numbers. Write like you're presenting to a VP.`;
+  await callClaude(prompt, document.getElementById('p3aitext'));
+}
+
+// SCROLL HELPER — named scrollToSection to avoid clash with window.scrollTo
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// NAV SCROLL SPY
+window.addEventListener('scroll', () => {
+  const ids=['p1','p2','p3'];
+  const links=document.querySelectorAll('.nl a');
+  ids.forEach((id,i)=>{
+    const el=document.getElementById(id); if(!el)return;
+    const r=el.getBoundingClientRect();
+    if(r.top<=70&&r.bottom>70)links[i].classList.add('on');
+    else links[i].classList.remove('on');
+  });
+});
+</script>
+</body>
+</html>
